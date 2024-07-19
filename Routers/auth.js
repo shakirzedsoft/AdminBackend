@@ -7,4 +7,5 @@ router.post("/register/admin",authController.register)
 router.post("/login/admin",authController.login)
 
 
+
 module.exports = router;
