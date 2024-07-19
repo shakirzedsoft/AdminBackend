@@ -22,7 +22,7 @@ app.use(router)
 
 
 //dbconnection
-mongoose.connect(process.env.DB).then((res)=>{
+mongoose.connect(process.env.MONGO_URL).then((res)=>{
 
 }).catch((err)=>{
 
