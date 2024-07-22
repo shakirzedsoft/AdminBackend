@@ -6,7 +6,10 @@ const authController = require('../controllers/authController');
 
 
 //create
-router.post("/create",authController.protect,fileUploadController.upload.array('images',10),villaController.createVilla)
+router.post("/create",authController.protect,fileUploadController.upload.array('images',10),villaController.createVilla);
+
+//getdata
+router.get('/getalldata',villaController.getData)
 
 
 

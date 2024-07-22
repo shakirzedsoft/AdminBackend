@@ -15,11 +15,9 @@ exports.createVilla = async (req, res, next) => {
             totalreturn
         } = req.body;
 
-        console.log(">>>>>>",req.files)
-
+        // console.log(">>>>>>",req.files)
         const imagePaths = req?.files?.map(file => file?.filename);
         console.log("IMG>>>>>", imagePaths)
-        console.log(req.body)
 
         const newData = await villa.create({
             roomno: roomno,
@@ -35,6 +33,25 @@ exports.createVilla = async (req, res, next) => {
         })
 
         return res.status(201).json(newData)
+
+    } catch (err) {
+        next(err)
+    }
+
+}
+
+//getdata
+exports.getData = async (req, res, next) => {
+
+    try {
+        const allvillaproject = await villa.find()
+        if (allvillaproject) {
+            return res.status(200).json(allvillaproject)
+        }
+        else {
+            return res.status(200).json("NoData")
+        }
+
 
     } catch (err) {
         next(err)
