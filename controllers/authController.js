@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const Admin = require('../models/admin')
 const jwt = require('jsonwebtoken')
-
+const { promisify } = require('util'); 
 
 
 
@@ -101,7 +101,7 @@ exports.protect = async (req, res, next) => {
         })
     }
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET)
-    const this_user = await User.findById(decoded.userId);
+    const this_user = await Admin.findById(decoded.userId);
     if (!this_user) {
         return res.status(401).json({
             message: "The user Belonging to this token does no longer exists"
