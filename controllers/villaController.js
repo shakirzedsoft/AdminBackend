@@ -46,6 +46,7 @@ exports.getData = async (req, res, next) => {
     try {
         const allvillaproject = await villa.find()
         if (allvillaproject) {
+            console.log(allvillaproject)
             return res.status(200).json(allvillaproject)
         }
         else {
