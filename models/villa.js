@@ -42,6 +42,26 @@ const villaSchema = new mongoose.Schema({
     projectednetyeld:{
         type:Number,
         required:[true,"projected net yield price is Required !!"]
+    },
+
+
+    
+    sqft:{
+        type:Number,
+        required:[true,"Sqft is Required !!"]
+    },
+    locationdesc:{
+        type:String,
+        required:[true,"location Desc is Required !!"]
+    },
+    pptyoverviewdesc:{
+        type:String,
+        required:[true,"Property Overview Desc is Required !!"]
+    },
+
+    amenities:{
+        type:String,
+        required:[true,"Amenities is Required !!"]
     }
 
 

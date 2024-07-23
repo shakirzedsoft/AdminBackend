@@ -12,7 +12,8 @@ exports.createVilla = async (req, res, next) => {
         const { aedprice, investmentreturn,
             location, netyield,
             noofbed, roomno, status, heading,
-            totalreturn
+            totalreturn,sqft,locationdesc,
+            pptyoverviewdesc,amenities
         } = req.body;
 
         // console.log(">>>>>>",req.files)
@@ -30,6 +31,11 @@ exports.createVilla = async (req, res, next) => {
             fiveyrtotalreturn: totalreturn,
             yearlyinvsmtreturn: investmentreturn,
             projectednetyeld: netyield,
+
+            sqft:sqft,
+            locationdesc:locationdesc,
+            pptyoverviewdesc:pptyoverviewdesc,
+            amenities:amenities
         })
 
         return res.status(201).json(newData)
