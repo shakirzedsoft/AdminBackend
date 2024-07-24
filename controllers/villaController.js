@@ -12,8 +12,8 @@ exports.createVilla = async (req, res, next) => {
         const { aedprice, investmentreturn,
             location, netyield,
             noofbed, roomno, status, heading,
-            totalreturn,sqft,locationdesc,
-            pptyoverviewdesc,amenities
+            totalreturn, sqft, locationdesc,
+            pptyoverviewdesc, amenities
         } = req.body;
 
         // console.log(">>>>>>",req.files)
@@ -32,10 +32,10 @@ exports.createVilla = async (req, res, next) => {
             yearlyinvsmtreturn: investmentreturn,
             projectednetyeld: netyield,
 
-            sqft:sqft,
-            locationdesc:locationdesc,
-            pptyoverviewdesc:pptyoverviewdesc,
-            amenities:amenities
+            sqft: sqft,
+            locationdesc: locationdesc,
+            pptyoverviewdesc: pptyoverviewdesc,
+            amenities: amenities
         })
 
         return res.status(201).json(newData)
@@ -65,3 +65,62 @@ exports.getData = async (req, res, next) => {
     }
 
 }
+
+
+//singleViewById 
+exports.singleViewById = async (req, res, next) => {
+
+    try {
+        const { id } = req.body;
+        console.log(id)
+        if (!id) {
+            throw {
+                message: "Id Missing",
+                status: 401
+            }
+        }
+
+        const singeViewByID = await villa.findById(id);
+        return res.status(200).json(singeViewByID)
+
+    } catch (err) {
+        next(err)
+    }
+
+}
+
+
+// updateVilla 
+exports.updateVilla = async (req, res, next) => {
+
+    try {
+        const { id } = req.body;
+
+        // console.log(req.body)
+
+        const imagePaths = req?.files?.map(file => file?.filename);
+        console.log("IMG>>>>>", imagePaths)
+        if (imagePaths.length !== 0) {
+            const updateData = await villa.findOneAndUpdate({ _id: id }, { $set: req.body, image: imagePaths }, { new: true, validateModifiedOnly: true })
+            return res.status(200).json({
+                message: "success",
+                data: updateData
+            })
+        }
+
+        if (imagePaths.length === 0) {
+            const updateData = await villa.findOneAndUpdate({ _id: id }, { $set: req.body }, { new: true, validateModifiedOnly: true })
+            return res.status(200).json({
+                message: "success",
+                data: updateData
+            })
+        }
+
+    } catch (err) {
+        next(err)
+    }
+
+}
+
+
+
