@@ -15,6 +15,11 @@ const villaSchema = new mongoose.Schema({
         type:[String],
         required:[true,"IMG is Required !!"]
     },
+    document:{
+        type:[String],
+        required:[true,"Documents is Required !!"]
+    },
+
     noofbed:{
         type:Number,
         required:[true,"No of bed is Required !!"]
