@@ -154,7 +154,7 @@ exports.updateVilla = async (req, res, next) => {
             //     data: updateData
             // })
 
-            
+
         }
 
 
@@ -173,5 +173,29 @@ exports.updateVilla = async (req, res, next) => {
 
 }
 
+
+// delete
+exports.deletevilla = async (req, res, next) => {
+
+    try {
+        const { id } = req.body;
+        const deletedData = await villa.findByIdAndDelete(id)
+
+        console.log(deletedData)
+        if(deletedData){
+            return res.status(200).json("Delete SuccessFullyy!!!")
+        }
+
+        throw {
+            message: "Please Check the Id",
+            status: 404
+        }
+
+
+    } catch (err) {
+        next(err)
+    }
+
+}
 
 

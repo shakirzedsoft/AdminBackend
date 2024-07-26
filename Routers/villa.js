@@ -17,6 +17,9 @@ router.post('/singleviewbyId',villaController.singleViewById)
 //edit 
 router.put('/updatevilla',fileUploadController.upload.array('images',10),villaController.updateVilla)
 
+//delete
+router.delete('/delete',villaController.deletevilla)
+
 
 
 
